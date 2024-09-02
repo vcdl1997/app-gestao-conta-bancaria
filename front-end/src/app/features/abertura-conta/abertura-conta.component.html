@@ -1,0 +1,57 @@
+<navbar/>
+
+<div class="d-flex justify-content-start align-items-center" style="padding: 1em;">
+    <breadcrumb [breadcrumbItems]="breadcrumb"/>
+</div>
+
+<div class="p-2 mb-5 bg-light rounded-3">
+    <div class="container-fluid">
+        <div class="container text-center">
+            <form [formGroup]="form">
+                <div class="container">
+                    <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
+                        <div class="col-sm-6 form-group">
+                            <label>Cod. Agência: </label>
+                            <input type="text" class="form-control" id="codigo-agencia" formControlName="codigoAgencia" (keypress)="inputNumber($event)" maxlength="5">
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
+                        <div class="col-sm-6 form-group">
+                            <label>Nº Conta: </label>
+                            <input type="text" class="form-control" id="numero-conta" formControlName="numeroConta" (keypress)="inputNumber($event)" maxlength="10">
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
+                        <div class="col-sm-8 form-group">
+                            <label>Nome Titular: </label>
+                            <input type="text" class="form-control" id="nome-titular" formControlName="nomeTitular" maxlength="200">
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
+                        <div class="col-sm-6 form-group">
+                            <label>Identificação Titular: </label>
+                            <input type="text" class="form-control" id="identificacao-titular" formControlName="documentoIdentificacaoTitular" maxlength="14">
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
+                        <div class="col-sm-6 form-group">
+                            <label>Valor Deposito: </label>
+                            <input type="text" class="form-control" id="valor-deposito" formControlName="valorDeposito" maxlength="15"
+                                (keypress)="inputNumber($event)" (focus)="inputNumber($event)"
+                                (focusout)="formatMonetary($event, 'valorDeposito')" (change)="formatMonetary($event, 'valorDeposito')">
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-center flex-wrap">
+                    <button type="button" class="btn btn-outline-primary" (click)="salvar()">
+                        Salvar <i class="fa-regular fa-floppy-disk"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary" (click)="limpar()">
+                        Limpar <i class="fa-sharp fa-regular fa-eraser"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

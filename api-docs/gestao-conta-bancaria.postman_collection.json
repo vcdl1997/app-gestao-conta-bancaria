@@ -1,0 +1,132 @@
+{
+	"info": {
+		"_postman_id": "e32e66b9-441d-4eb1-ac07-2f87ea991aa2",
+		"name": "Gestão Conta Bancária",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14470780"
+	},
+	"item": [
+		{
+			"name": "Contas",
+			"item": [
+				{
+					"name": "Transferencias",
+					"item": [
+						{
+							"name": "Cadastrar",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"codigoAgenciaDestino\": \"12345\",\r\n\t\"numeroContaDestino\": \"123457\",\r\n\t\"valorATransferir\": \"10.00\",\r\n\t\"dataATransferir\": \"2024-08-24\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/gestao-conta-bancaria/v1/contas/1/transferencias",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"gestao-conta-bancaria",
+										"v1",
+										"contas",
+										"1",
+										"transferencias"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Buscar Todos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/gestao-conta-bancaria/v1/contas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"gestao-conta-bancaria",
+								"v1",
+								"contas"
+							],
+							"query": [
+								{
+									"key": "idConta",
+									"value": "2",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/gestao-conta-bancaria/v1/contas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"gestao-conta-bancaria",
+								"v1",
+								"contas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastrar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"codigoAgencia\": \"12345\",\r\n\t\"numeroConta\": \"123456\",\r\n    \"nomeTitular\": \"aaaaa\",\r\n    \"documentoIdentificacaoTitular\": \"01234567891\",\r\n    \"valorDeposito\": \"50.00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/gestao-conta-bancaria/v1/contas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"gestao-conta-bancaria",
+								"v1",
+								"contas"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

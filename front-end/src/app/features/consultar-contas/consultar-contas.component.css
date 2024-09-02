@@ -1,0 +1,14 @@
+button{
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 150px;
+}
+
+label{
+    width: 100%; 
+    text-align: left;
+}
+
+input {
+    width: 100%; 
+}

@@ -1,0 +1,18 @@
+#photo{
+    color: white;
+    font-size: 18px;
+}
+
+a {
+    cursor: pointer;
+    font-size: 20px;
+}
+
+a > span{
+    font-size: 20px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px;
+    color: rgb(106, 176, 76);
+    font-weight: bold;
+}

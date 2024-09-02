@@ -1,0 +1,13 @@
+* {
+    font-size: 24px;
+}
+
+ol{
+    margin: 0 !important; 
+    padding: 0 !important;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(83, 92, 104);
+}

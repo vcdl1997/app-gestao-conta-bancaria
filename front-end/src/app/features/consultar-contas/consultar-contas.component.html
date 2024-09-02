@@ -1,0 +1,92 @@
+<navbar/>
+
+<div class="d-flex justify-content-start align-items-center" style="padding: 1em;">
+    <breadcrumb [breadcrumbItems]="breadcrumb"/>
+</div>
+
+<div class="p-2 mb-5 bg-light rounded-3">
+    <div class="container-fluid">
+        <div class="container text-center">
+            <form [formGroup]="filtros">
+                <div class="container text-center">
+                    <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
+                        <div class="col-sm-6 form-group">
+                            <label>ID (Conta): </label>
+                            <input type="text" class="form-control" id="id-conta" formControlName="idConta" (keypress)="inputNumber($event)" maxlength="10">
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <label>Cod. Agência: </label>
+                            <input type="text" class="form-control" id="codigo-agencia" formControlName="codigoAgencia" (keypress)="inputNumber($event)" maxlength="5">
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
+                        <div class="col-sm-6 form-group">
+                            <label>Nº Conta: </label>
+                            <input type="text" class="form-control" id="numero-conta" formControlName="numeroConta" (keypress)="inputNumber($event)" maxlength="10">
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <label>Nome Titular: </label>
+                            <input type="text" class="form-control" id="nome-titular" formControlName="nomeTitular" maxlength="200">
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
+                        <div class="col-sm-6 form-group">
+                            <label>Identificação Titular: </label>
+                            <input type="text" class="form-control" id="identificacao-titular" formControlName="documentoIdentificacaoTitular" maxlength="14">
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-center flex-wrap">
+                    <button type="button" class="btn btn-outline-success" (click)="buscar()">
+                        Pesquisar <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary" (click)="limpar()">
+                        Limpar <i class="fa-sharp fa-regular fa-eraser"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-primary" [routerLink]="['/abertura']">
+                        Novo <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div>
+	<p-table [value]="data" [rows]="rowsPerPage" [totalRecords]="totalRecords" [ngStyle]="{'width': '100%'}">
+		<ng-template pTemplate="header">
+			<tr>
+				<th *ngFor="let column of columns; index as i;"  ngClass="{{column.class}}">{{column.name}}</th>
+			</tr>
+		</ng-template>
+		<ng-template pTemplate="body" let-rowData>
+			<tr>
+				@for (rowColumn of rowColumns; track rowColumn; let idx = $index, e = $even) {
+					@if (rowColumn.name && !rowColumn.action) {
+						<td ngClass="{{rowColumn.class}}">{{rowData[rowColumn.name]}}</td>
+					} 
+					@else {
+                        <td ngClass="d-flex justify-content-center align-items-center">
+                            <a 
+                                class="btn btn-primary" [routerLink]="['/contas/', rowData[rowColumn.name]]">
+                                <i class="fa-regular fa-right-to-bracket"></i>
+                            </a>
+                        </td>
+					}
+				}
+			</tr>
+		</ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="7" class="text-center">Não foram encontradas transações.</td>
+            </tr>
+        </ng-template>
+	</p-table>
+	
+	<p-paginator 
+		[rows]="rowsPerPage" 
+		[totalRecords]="totalRecords"
+		(onPageChange)="onPage($event)">
+	</p-paginator>
+</div>

@@ -1,0 +1,101 @@
+<navbar [nomeTitular]="conta.nomeTitular" [saldo]="formatarValorMonetario(conta.saldo)"/>
+
+<div class="p-2 mt-5 mb-5 d-flex justify-content-evenly align-items-center flex-wrap">
+    <div class="col-sm-5">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Transferir</h5>
+                <p class="card-text">
+                    Envie dinheiro para amigos, familiares ou pague suas contas com segurança e rapidez. Com o MovimentaBank, suas transferências são instantâneas e sem complicações.
+                </p>
+                <button class="btn btn-primary" (click)="visibilityModalTransferir = true">
+                    Transferir Agora 
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="d-md-flex align-items-center justify-content-between">
+    <h2 class="bd-title mb-0" id="content">Extrato</h2>
+</div>
+
+<p-table 
+    class="table table-bordered"
+    [value]="conta.extrato"
+    [paginator]="true"
+    [rows]="5"
+    [ngStyle]="{'width': '100%'}"
+>
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Data</th>
+            <th>Tipo</th>
+            <th>Valor</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-extrato>
+        <tr>
+            <td>{{ extrato.data }}</td>
+            <td>{{ extrato.tipo }}</td>
+            <td>{{ formatarValorMonetario(extrato.valor) }}</td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="3" class="text-center">Não foram encontradas transações.</td>
+        </tr>
+    </ng-template>
+</p-table>
+
+
+<div class="card flex justify-content-center">
+    <p-dialog [(visible)]="visibilityModalTransferir" [style]="{ width: '50vw' }">
+        <div class="p-2 bg-light rounded-3">
+            <div class="container-fluid">
+                <div class="container text-center">
+                    <form [formGroup]="formTransferencia">
+                        <div class="container">
+                            <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
+                                <div class="col-sm-6 form-group">
+                                    <label>Cod. Agência (Destino): </label>
+                                    <input type="text" class="form-control" id="codigo-agencia-destino" formControlName="codigoAgenciaDestino" (keypress)="inputNumber($event)" maxlength="5">
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
+                                <div class="col-sm-6 form-group">
+                                    <label>Nº Conta (Destino): </label>
+                                    <input type="text" class="form-control" id="numero-conta-destino" formControlName="numeroContaDestino" (keypress)="inputNumber($event)" maxlength="10">
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
+                                <div class="col-sm-6 form-group">
+                                    <label>Valor a transferir: </label>
+                                    <input type="text" class="form-control" id="valor-transferencia" formControlName="valorATransferir" maxlength="15"
+                                        (keypress)="inputNumber($event)" (focus)="inputNumber($event)"
+                                        (focusout)="formatMonetary($event, 'valorATransferir')" (change)="formatMonetary($event, 'valorATransferir')">
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
+                                <div class="col-sm-6 form-group">
+                                    <label>Data à Transferir: </label>
+                                    <input type="date" class="form-control" id="numero-conta-destino" formControlName="dataATransferir">
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-center flex-wrap">
+                            <button type="button" class="btn btn-outline-primary" (click)="transferir()">
+                                Salvar <i class="fa-regular fa-floppy-disk"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary" (click)="visibilityModalTransferir = false">
+                                Cancelar <i class="fa-solid fa-ban"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </p-dialog>
+</div>

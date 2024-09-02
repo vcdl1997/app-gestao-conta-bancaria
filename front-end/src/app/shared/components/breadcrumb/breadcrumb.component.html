@@ -1,0 +1,7 @@
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li [ngClass]="{'active': isLast }" class="breadcrumb-item" *ngFor="let item of breadcrumbItems; index as i; last as isLast" [attr.active]="isLast">
+            <a [routerLink]="[formatterLink(item.link)]">{{item.titulo}}</a>
+        </li>
+    </ol>
+</nav>

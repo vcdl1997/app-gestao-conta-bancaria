@@ -1,0 +1,70 @@
+openapi: 3.0.0
+info:
+  title: Gestão Conta Bancária
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+tags:
+  - name: Contas
+  - name: Contas > Transferencias
+paths:
+  /gestao-conta-bancaria/v1/contas/1/transferencias:
+    post:
+      tags:
+        - Contas > Transferencias
+      summary: Cadastrar
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                codigoAgenciaDestino: '12345'
+                numeroContaDestino: '123457'
+                valorATransferir: '10.00'
+                dataATransferir: '2024-08-24'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /gestao-conta-bancaria/v1/contas:
+    get:
+      tags:
+        - Contas
+      summary: Buscar Todos
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Contas
+      summary: Cadastrar
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                codigoAgencia: '12345'
+                numeroConta: '123456'
+                nomeTitular: aaaaa
+                documentoIdentificacaoTitular: '01234567891'
+                valorDeposito: '50.00'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /gestao-conta-bancaria/v1/contas/1:
+    get:
+      tags:
+        - Contas
+      summary: Buscar por ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
